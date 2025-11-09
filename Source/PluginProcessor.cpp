@@ -111,6 +111,11 @@ NinjuAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
   for (auto &wave : sineWaves)
     {
       wave.prepare (sampleRate);
+
+      frequencyParam = state.getRawParameterValue ("freqHz");
+      // float isPlaying = state.getRawParameterValue ("play")->load (); //
+      // TODO make slider for amplitude, this should be a toggle
+      playParam = state.getRawParameterValue ("play");
     }
 }
 
@@ -166,10 +171,8 @@ NinjuAudioProcessor::processBlock (juce::AudioBuffer<float> &buffer,
   for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
     buffer.clear (i, 0, buffer.getNumSamples ());
 
-  float freq = state.getRawParameterValue ("freqHz")->load ();
-  // float isPlaying = state.getRawParameterValue ("play")->load (); // TODO
-  // make slider for amplitude, this should be a toggle
-  bool isPlaying = state.getRawParameterValue ("play")->load ();
+  const float freq = frequencyParam->load ();
+  const bool isPlaying = static_cast<bool> (playParam->load ());
   // sinewave.setFrequency (freq);
   //   sinewave.process (buffer);
   for (int channel = 0; channel < buffer.getNumChannels (); ++channel)

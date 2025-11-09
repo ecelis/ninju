@@ -65,6 +65,8 @@ private:
   std::vector<SineWaveChannel> sineWaves;
   juce::AudioProcessorValueTreeState state;
   juce::AudioProcessorValueTreeState::ParameterLayout createParameters ();
+  std::atomic<float> *frequencyParam;
+  std::atomic<float> *playParam;
 
   //==============================================================================
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (NinjuAudioProcessor)
