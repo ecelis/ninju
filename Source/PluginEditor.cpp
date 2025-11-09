@@ -22,7 +22,7 @@ NinjuAudioProcessorEditor::NinjuAudioProcessorEditor (NinjuAudioProcessor &p)
                                        false);
   tapLogo = juce::ImageFileFormat::loadFrom (imageStream);
 
-  addAndMakeVisible (frequencySlider);
+  // addAndMakeVisible (frequencySlider);
 
   setSize (400, 400);
 }
@@ -61,5 +61,5 @@ NinjuAudioProcessorEditor::resized ()
 {
   // This is generally where you'll want to lay out the positions of any
   // subcomponents in your editor..
-  frequencySlider.setBounds (100, 200, 200, 200);
+  // frequencySlider.setBounds (100, 200, 200, 200);
 }
