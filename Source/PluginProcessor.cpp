@@ -106,7 +106,7 @@ NinjuAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
   // Use this method as the place to do any pre-playback
   // initialisation that you need..
-  sinewave.prepare (sampleRate);
+  sinewave.prepare (sampleRate, getTotalNumOutputChannels ());
 }
 
 void

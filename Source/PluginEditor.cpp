@@ -6,37 +6,40 @@
   ==============================================================================
 */
 
-#include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include "PluginProcessor.h"
 
 //==============================================================================
-NinjuAudioProcessorEditor::NinjuAudioProcessorEditor (NinjuAudioProcessor& p)
+NinjuAudioProcessorEditor::NinjuAudioProcessorEditor (NinjuAudioProcessor &p)
     : AudioProcessorEditor (&p), audioProcessor (p)
 {
-    addAndMakeVisible (&square);
-    // Make sure that before the constructor has finished, you've set the
-    // editor's size to whatever you need it to be.
-    setSize (400, 300);
+  // addAndMakeVisible (&square);
+  // Make sure that before the constructor has finished, you've set the
+  // editor's size to whatever you need it to be.
+  setSize (400, 300);
 }
 
-NinjuAudioProcessorEditor::~NinjuAudioProcessorEditor()
-{
-}
+NinjuAudioProcessorEditor::~NinjuAudioProcessorEditor () {}
 
 //==============================================================================
-void NinjuAudioProcessorEditor::paint (juce::Graphics& g)
+void
+NinjuAudioProcessorEditor::paint (juce::Graphics &g)
 {
-    // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
+  // (Our component is opaque, so we must completely fill the background with a
+  // solid colour)
+  g.fillAll (getLookAndFeel ().findColour (
+      juce::ResizableWindow::backgroundColourId));
 
-    g.setColour (juce::Colours::white);
-    g.setFont (juce::FontOptions (15.0f));
-    g.drawFittedText ("Hello World!", getLocalBounds(), juce::Justification::centred, 1);
+  g.setColour (juce::Colours::white);
+  g.setFont (juce::FontOptions (15.0f));
+  g.drawFittedText ("Hello World!", getLocalBounds (),
+                    juce::Justification::centred, 1);
 }
 
-void NinjuAudioProcessorEditor::resized()
+void
+NinjuAudioProcessorEditor::resized ()
 {
-    // This is generally where you'll want to lay out the positions of any
-    // subcomponents in your editor..
-    square.setBounds (100, 100, 200, 200);
+  // This is generally where you'll want to lay out the positions of any
+  // subcomponents in your editor..
+  square.setBounds (100, 100, 200, 200);
 }

@@ -10,10 +10,12 @@ private:
   float frequency = 440.0f; // f
   float currentSampleRate = 0.0f;
   float timeIncrement = 0.0f;
-  float currentTime = 0.0f; // t
+  //   float currentTime = 0.0f; // t
+  std::vector<float> currentTime;
 
 public:
-  void prepare (double sampleRate);
+  //   void prepare (double sampleRate);
+  void prepare (double sampleRate, int numChannels);
   void process (juce::AudioBuffer<float> &buffer);
 };
 
