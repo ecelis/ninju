@@ -1,3 +1,5 @@
+#pragma once
+
 #include <juce_audio_basics/juce_audio_basics.h>
 
 #ifndef SINEWAVE_H
@@ -17,6 +19,26 @@ public:
   //   void prepare (double sampleRate);
   void prepare (double sampleRate, int numChannels);
   void process (juce::AudioBuffer<float> &buffer);
+  float
+  getAmplitude () const
+  {
+    return amplitude;
+  }
+  float
+  getFrequency () const
+  {
+    return frequency;
+  }
+  void
+  setAmplitude (const float newAmplitude)
+  {
+    amplitude = newAmplitude;
+  }
+  void
+  setFrequency (const float newFrequency)
+  {
+    frequency = newFrequency;
+  }
 };
 
 #endif // SINEWAVE_H

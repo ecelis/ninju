@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="KfLJg1" name="ninju" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
+              addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" cppLanguageStandard="20">
   <MAINGROUP id="WThyKH" name="ninju">
     <GROUP id="{B6E950E9-89E4-81FB-E077-1B2830F2C1A9}" name="Source">
+      <FILE id="jIb6Fa" name="SineWaveChannel.cpp" compile="1" resource="0"
+            file="Source/SineWaveChannel.cpp"/>
+      <FILE id="TaDdve" name="SineWaveChannel.h" compile="0" resource="0"
+            file="Source/SineWaveChannel.h"/>
       <FILE id="OfKDXj" name="SineWave.cpp" compile="1" resource="0" file="Source/SineWave.cpp"/>
       <FILE id="DuncGP" name="SineWave.h" compile="0" resource="0" file="Source/SineWave.h"/>
       <FILE id="s3UdQR" name="PluginProcessor.cpp" compile="1" resource="0"

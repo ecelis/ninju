@@ -106,7 +106,11 @@ NinjuAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
   // Use this method as the place to do any pre-playback
   // initialisation that you need..
-  sinewave.prepare (sampleRate, getTotalNumOutputChannels ());
+  sineWaves.resize (getTotalNumOutputChannels ());
+  for (auto &wave : sineWaves)
+    {
+      wave.prepare (sampleRate);
+    }
 }
 
 void
@@ -161,7 +165,12 @@ NinjuAudioProcessor::processBlock (juce::AudioBuffer<float> &buffer,
   for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
     buffer.clear (i, 0, buffer.getNumSamples ());
 
-  sinewave.process (buffer);
+  //   sinewave.process (buffer);
+  for (int channel = 0; channel < buffer.getNumChannels (); ++channel)
+    {
+      auto *output = buffer.getWritePointer (channel);
+      sineWaves[channel].process (output, buffer.getNumSamples ());
+    }
   // This is the place where you'd normally do the guts of your plugin's
   // audio processing...
   // Make sure to reset the state if your inner loop is processing

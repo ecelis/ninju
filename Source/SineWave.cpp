@@ -2,7 +2,7 @@
 
 // SineWave::prepare (double sampleRate)
 void
-SineWave::prepare (double sampleRate, int numChannels)
+SineWave::prepare (double sampleRate, const int numChannels)
 {
   currentSampleRate = static_cast<float> (sampleRate);
   timeIncrement = 1.0f / currentSampleRate;

@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "SineWave.h"
+#include "SineWaveChannel.h"
 #include <JuceHeader.h>
 
 //==============================================================================
@@ -55,7 +55,8 @@ public:
   void setStateInformation (const void *data, int sizeInBytes) override;
 
 private:
-  SineWave sinewave;
+  // SineWave sinewave;
+  std::vector<SineWaveChannel> sineWaves;
   //==============================================================================
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (NinjuAudioProcessor)
 };
