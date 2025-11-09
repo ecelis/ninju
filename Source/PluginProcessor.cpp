@@ -166,11 +166,11 @@ NinjuAudioProcessor::processBlock (juce::AudioBuffer<float> &buffer,
     buffer.clear (i, 0, buffer.getNumSamples ());
 
   //   sinewave.process (buffer);
-  for (int channel = 0; channel < buffer.getNumChannels (); ++channel)
-    {
-      auto *output = buffer.getWritePointer (channel);
-      sineWaves[channel].process (output, buffer.getNumSamples ());
-    }
+  // for (int channel = 0; channel < buffer.getNumChannels (); ++channel)
+  //   {
+  //     auto *output = buffer.getWritePointer (channel);
+  //     sineWaves[channel].process (output, buffer.getNumSamples ());
+  //   }
   // This is the place where you'd normally do the guts of your plugin's
   // audio processing...
   // Make sure to reset the state if your inner loop is processing

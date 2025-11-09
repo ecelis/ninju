@@ -22,7 +22,25 @@ NinjuAudioProcessorEditor::NinjuAudioProcessorEditor (NinjuAudioProcessor &p)
                                        false);
   tapLogo = juce::ImageFileFormat::loadFrom (imageStream);
 
-  // addAndMakeVisible (frequencySlider);
+  frequencySlider.setSliderStyle (juce::Slider::SliderStyle::LinearVertical);
+  frequencySlider.setTextBoxStyle (juce::Slider::TextBoxBelow, true, 100, 50);
+  frequencySlider.setRange (0.0f, 1.0f, 0.01f);
+  addAndMakeVisible (frequencySlider);
+
+  playButton.setButtonText ("Playing");
+  playButton.setToggleState (true,
+                             juce::NotificationType::dontSendNotification);
+  playButton.setClickingTogglesState (true);
+  playButton.setColour (juce::TextButton::ColourIds::buttonOnColourId,
+                        juce::Colours::green);
+  playButton.setColour (juce::TextButton::ColourIds::buttonColourId,
+                        juce::Colours::red);
+  playButton.onClick = [this] ()
+    {
+      const bool isPlaying = playButton.getToggleState ();
+      playButton.setButtonText (isPlaying ? "Playing" : "Stopped");
+    };
+  addAndMakeVisible (playButton);
 
   setSize (400, 400);
 }
@@ -61,5 +79,7 @@ NinjuAudioProcessorEditor::resized ()
 {
   // This is generally where you'll want to lay out the positions of any
   // subcomponents in your editor..
-  // frequencySlider.setBounds (100, 200, 200, 200);
+  frequencySlider.setBounds (getWidth () / 2 - 50, getHeight () / 2 - 100, 100,
+                             200);
+  playButton.setBounds (getWidth () / 2 - 50, getHeight () / 2 + 120, 100, 20);
 }
