@@ -17,26 +17,26 @@
  */
 class NinjuAudioProcessorEditor : public juce::AudioProcessorEditor
 {
-public:
-  NinjuAudioProcessorEditor (NinjuAudioProcessor &);
-  ~NinjuAudioProcessorEditor () override;
+  public:
+    NinjuAudioProcessorEditor (NinjuAudioProcessor &);
+    ~NinjuAudioProcessorEditor () override;
 
-  //==============================================================================
-  void paint (juce::Graphics &) override;
-  void resized () override;
+    //==============================================================================
+    void paint (juce::Graphics &) override;
+    void resized () override;
 
-private:
-  juce::Image tapLogo;
+  private:
+    juce::Image tapLogo;
 
-  juce::Slider frequencySlider;
-  juce::TextButton playButton;
-  juce::Label frequencyLabel{ "FrequencyLabel", "Frequency" };
-  // This reference is provided as a quick way for your editor to
-  // access the processor object that created it.
-  NinjuAudioProcessor &processorRef;
+    juce::Slider frequencySlider;
+    juce::TextButton playButton;
+    juce::Label frequencyLabel{ "FrequencyLabel", "Frequency" };
+    // This reference is provided as a quick way for your editor to
+    // access the processor object that created it.
+    NinjuAudioProcessor &processorRef;
 
-  juce::AudioProcessorValueTreeState::SliderAttachment freqSliderAttachment;
-  juce::AudioProcessorValueTreeState::ButtonAttachment playButtonAttachment;
+    juce::AudioProcessorValueTreeState::SliderAttachment freqSliderAttachment;
+    juce::AudioProcessorValueTreeState::ButtonAttachment playButtonAttachment;
 
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (NinjuAudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (NinjuAudioProcessorEditor)
 };

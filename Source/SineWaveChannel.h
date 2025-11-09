@@ -13,35 +13,35 @@
 
 class SineWaveChannel
 {
-private:
-  float amplitude = 0.0f;   // A
-  float frequency = 440.0f; // f
-  float sampleRate = 0.0f;
-  float timeIncrement = 0.0f;
-  float currentTime = 0.0f; // t
+  private:
+    float amplitude = 0.0f;   // A
+    float frequency = 440.0f; // f
+    float sampleRate = 0.0f;
+    float timeIncrement = 0.0f;
+    float currentTime = 0.0f; // t
 
-public:
-  //   void prepare (double sampleRate);
-  void prepare (double rate);
-  void process (float *output, int numSamples);
-  float
-  getAmplitude () const
-  {
-    return amplitude;
-  }
-  float
-  getFrequency () const
-  {
-    return frequency;
-  }
-  void
-  setAmplitude (const float newAmplitude)
-  {
-    amplitude = newAmplitude;
-  }
-  void
-  setFrequency (const float newFrequency)
-  {
-    frequency = newFrequency;
-  }
+  public:
+    //   void prepare (double sampleRate);
+    void prepare (double rate);
+    void process (float *output, int numSamples);
+    float
+    getAmplitude () const
+    {
+        return amplitude;
+    }
+    float
+    getFrequency () const
+    {
+        return frequency;
+    }
+    void
+    setAmplitude (const float newAmplitude)
+    {
+        amplitude = newAmplitude;
+    }
+    void
+    setFrequency (const float newFrequency)
+    {
+        frequency = newFrequency;
+    }
 };

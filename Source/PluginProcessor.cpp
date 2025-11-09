@@ -32,16 +32,16 @@ NinjuAudioProcessor::~NinjuAudioProcessor () {}
 const juce::String
 NinjuAudioProcessor::getName () const
 {
-  return JucePlugin_Name;
+    return JucePlugin_Name;
 }
 
 bool
 NinjuAudioProcessor::acceptsMidi () const
 {
 #if JucePlugin_WantsMidiInput
-  return true;
+    return true;
 #else
-  return false;
+    return false;
 #endif
 }
 
@@ -49,9 +49,9 @@ bool
 NinjuAudioProcessor::producesMidi () const
 {
 #if JucePlugin_ProducesMidiOutput
-  return true;
+    return true;
 #else
-  return false;
+    return false;
 #endif
 }
 
@@ -59,30 +59,30 @@ bool
 NinjuAudioProcessor::isMidiEffect () const
 {
 #if JucePlugin_IsMidiEffect
-  return true;
+    return true;
 #else
-  return false;
+    return false;
 #endif
 }
 
 double
 NinjuAudioProcessor::getTailLengthSeconds () const
 {
-  return 0.0;
+    return 0.0;
 }
 
 int
 NinjuAudioProcessor::getNumPrograms ()
 {
-  return 1; // NB: some hosts don't cope very well if you tell them there are 0
-            // programs, so this should be at least 1, even if you're not
-            // really implementing programs.
+    return 1; // NB: some hosts don't cope very well if you tell them there are
+              // 0 programs, so this should be at least 1, even if you're not
+              // really implementing programs.
 }
 
 int
 NinjuAudioProcessor::getCurrentProgram ()
 {
-  return 0;
+    return 0;
 }
 
 void
@@ -93,7 +93,7 @@ NinjuAudioProcessor::setCurrentProgram (int index)
 const juce::String
 NinjuAudioProcessor::getProgramName (int index)
 {
-  return {};
+    return {};
 }
 
 void
@@ -105,25 +105,26 @@ NinjuAudioProcessor::changeProgramName (int index, const juce::String &newName)
 void
 NinjuAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-  // Use this method as the place to do any pre-playback
-  // initialisation that you need..
-  sineWaves.resize (getTotalNumOutputChannels ());
-  for (auto &wave : sineWaves)
-    {
-      wave.prepare (sampleRate);
+    // Use this method as the place to do any pre-playback
+    // initialisation that you need..
+    sineWaves.resize (getTotalNumOutputChannels ());
+    for (auto &wave : sineWaves)
+        {
+            wave.prepare (sampleRate);
 
-      frequencyParam = state.getRawParameterValue ("freqHz");
-      // float isPlaying = state.getRawParameterValue ("play")->load (); //
-      // TODO make slider for amplitude, this should be a toggle
-      playParam = state.getRawParameterValue ("play");
-    }
+            frequencyParam = state.getRawParameterValue ("freqHz");
+            // float isPlaying = state.getRawParameterValue ("play")->load ();
+            // //
+            // TODO make slider for amplitude, this should be a toggle
+            playParam = state.getRawParameterValue ("play");
+        }
 }
 
 void
 NinjuAudioProcessor::releaseResources ()
 {
-  // When playback stops, you can use this as an opportunity to free up any
-  // spare memory, etc.
+    // When playback stops, you can use this as an opportunity to free up any
+    // spare memory, etc.
 }
 
 #ifndef JucePlugin_PreferredChannelConfigurations
@@ -131,25 +132,26 @@ bool
 NinjuAudioProcessor::isBusesLayoutSupported (const BusesLayout &layouts) const
 {
 #if JucePlugin_IsMidiEffect
-  juce::ignoreUnused (layouts);
-  return true;
+    juce::ignoreUnused (layouts);
+    return true;
 #else
-  // This is the place where you check if the layout is supported.
-  // In this template code we only support mono or stereo.
-  // Some plugin hosts, such as certain GarageBand versions, will only
-  // load plugins that support stereo bus layouts.
-  if (layouts.getMainOutputChannelSet () != juce::AudioChannelSet::mono ()
-      && layouts.getMainOutputChannelSet ()
-             != juce::AudioChannelSet::stereo ())
-    return false;
+    // This is the place where you check if the layout is supported.
+    // In this template code we only support mono or stereo.
+    // Some plugin hosts, such as certain GarageBand versions, will only
+    // load plugins that support stereo bus layouts.
+    if (layouts.getMainOutputChannelSet () != juce::AudioChannelSet::mono ()
+        && layouts.getMainOutputChannelSet ()
+               != juce::AudioChannelSet::stereo ())
+        return false;
 
-  // This checks if the input layout matches the output layout
+    // This checks if the input layout matches the output layout
 #if !JucePlugin_IsSynth
-  if (layouts.getMainOutputChannelSet () != layouts.getMainInputChannelSet ())
-    return false;
+    if (layouts.getMainOutputChannelSet ()
+        != layouts.getMainInputChannelSet ())
+        return false;
 #endif
 
-  return true;
+    return true;
 #endif
 }
 #endif
@@ -158,74 +160,75 @@ void
 NinjuAudioProcessor::processBlock (juce::AudioBuffer<float> &buffer,
                                    juce::MidiBuffer &midiMessages)
 {
-  juce::ScopedNoDenormals noDenormals;
-  auto totalNumInputChannels = getTotalNumInputChannels ();
-  auto totalNumOutputChannels = getTotalNumOutputChannels ();
+    juce::ScopedNoDenormals noDenormals;
+    auto totalNumInputChannels = getTotalNumInputChannels ();
+    auto totalNumOutputChannels = getTotalNumOutputChannels ();
 
-  // In case we have more outputs than inputs, this code clears any output
-  // channels that didn't contain input data, (because these aren't
-  // guaranteed to be empty - they may contain garbage).
-  // This is here to avoid people getting screaming feedback
-  // when they first compile a plugin, but obviously you don't need to keep
-  // this code if your algorithm always overwrites all the output channels.
-  for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
-    buffer.clear (i, 0, buffer.getNumSamples ());
+    // In case we have more outputs than inputs, this code clears any output
+    // channels that didn't contain input data, (because these aren't
+    // guaranteed to be empty - they may contain garbage).
+    // This is here to avoid people getting screaming feedback
+    // when they first compile a plugin, but obviously you don't need to keep
+    // this code if your algorithm always overwrites all the output channels.
+    for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
+        buffer.clear (i, 0, buffer.getNumSamples ());
 
-  const float freq = frequencyParam->load ();
-  const bool isPlaying = static_cast<bool> (playParam->load ());
-  // sinewave.setFrequency (freq);
-  //   sinewave.process (buffer);
-  for (int channel = 0; channel < buffer.getNumChannels (); ++channel)
-    {
-      auto *output = buffer.getWritePointer (channel);
-      sineWaves[channel].setFrequency (freq);
-      // sineWaves[channel].setAmplitude (isPlaying);
-      sineWaves[channel].setAmplitude (isPlaying ? 0.4f : 0.0f);
+    const float freq = frequencyParam->load ();
+    const bool isPlaying = static_cast<bool> (playParam->load ());
+    // sinewave.setFrequency (freq);
+    //   sinewave.process (buffer);
+    for (int channel = 0; channel < buffer.getNumChannels (); ++channel)
+        {
+            auto *output = buffer.getWritePointer (channel);
+            sineWaves[channel].setFrequency (freq);
+            // sineWaves[channel].setAmplitude (isPlaying);
+            sineWaves[channel].setAmplitude (isPlaying ? 0.4f : 0.0f);
 
-      sineWaves[channel].process (output, buffer.getNumSamples ());
-    }
-  // This is the place where you'd normally do the guts of your plugin's
-  // audio processing...
-  // Make sure to reset the state if your inner loop is processing
-  // the samples and the outer loop is handling the channels.
-  // Alternatively, you can process the samples with the channels
-  // interleaved by keeping the same state.
-  //   for (int channel = 0; channel < totalNumInputChannels; ++channel)
-  //     {
-  //       auto *channelData = buffer.getWritePointer (channel);
+            sineWaves[channel].process (output, buffer.getNumSamples ());
+        }
+    // This is the place where you'd normally do the guts of your plugin's
+    // audio processing...
+    // Make sure to reset the state if your inner loop is processing
+    // the samples and the outer loop is handling the channels.
+    // Alternatively, you can process the samples with the channels
+    // interleaved by keeping the same state.
+    //   for (int channel = 0; channel < totalNumInputChannels; ++channel)
+    //     {
+    //       auto *channelData = buffer.getWritePointer (channel);
 
-  //       // ..do something to the data...
-  //     }
+    //       // ..do something to the data...
+    //     }
 }
 
 //==============================================================================
 bool
 NinjuAudioProcessor::hasEditor () const
 {
-  return true; // (change this to false if you choose to not supply an editor)
+    return true; // (change this to false if you choose to not supply an
+                 // editor)
 }
 
 juce::AudioProcessorEditor *
 NinjuAudioProcessor::createEditor ()
 {
-  return new NinjuAudioProcessorEditor (*this);
+    return new NinjuAudioProcessorEditor (*this);
 }
 
 //==============================================================================
 void
 NinjuAudioProcessor::getStateInformation (juce::MemoryBlock &destData)
 {
-  // You should use this method to store your parameters in the memory block.
-  // You could do that either as raw data, or use the XML or ValueTree classes
-  // as intermediaries to make it easy to save and load complex data.
+    // You should use this method to store your parameters in the memory block.
+    // You could do that either as raw data, or use the XML or ValueTree
+    // classes as intermediaries to make it easy to save and load complex data.
 }
 
 void
 NinjuAudioProcessor::setStateInformation (const void *data, int sizeInBytes)
 {
-  // You should use this method to restore your parameters from this memory
-  // block, whose contents will have been created by the getStateInformation()
-  // call.
+    // You should use this method to restore your parameters from this memory
+    // block, whose contents will have been created by the
+    // getStateInformation() call.
 }
 
 //==============================================================================
@@ -233,19 +236,20 @@ NinjuAudioProcessor::setStateInformation (const void *data, int sizeInBytes)
 juce::AudioProcessor *JUCE_CALLTYPE
 createPluginFilter ()
 {
-  return new NinjuAudioProcessor ();
+    return new NinjuAudioProcessor ();
 }
 
 juce::AudioProcessorValueTreeState::ParameterLayout
 NinjuAudioProcessor::createParameters ()
 {
-  // juce::AudioParameterFloat frequency{ juce::ParameterID{ "freqHz" },
-  //                                      "Frequency", 20.0f, 20000.0f, 220.0f
-  //                                      };
+    // juce::AudioParameterFloat frequency{ juce::ParameterID{ "freqHz" },
+    //                                      "Frequency", 20.0f, 20000.0f,
+    //                                      220.0f
+    //                                      };
 
-  return { std::make_unique<juce::AudioParameterFloat> (
-               juce::ParameterID{ "freqHz", 1 }, "Frequency", 20.0f, 20000.0f,
-               220.0f),
-           std::make_unique<juce::AudioParameterBool> (
-               juce::ParameterID{ "play", 1 }, "Play", true) };
+    return { std::make_unique<juce::AudioParameterFloat> (
+                 juce::ParameterID{ "freqHz", 1 }, "Frequency", 20.0f,
+                 20000.0f, 220.0f),
+             std::make_unique<juce::AudioParameterBool> (
+                 juce::ParameterID{ "play", 1 }, "Play", true) };
 }
