@@ -29,6 +29,15 @@
       "command": "make -j 6 -C ${workspaceFolder}/Builds/LinuxMakefile CONFIG=Debug",
       "problemMatcher": [],
       "group": "build"
+    },
+    {
+      "label": "Clean and Build",
+      "dependsOn": [
+        "Clean",
+        "Build"
+      ],
+      "dependsOrder": "sequence",
+      "group": "build"
     }
   ]
 }

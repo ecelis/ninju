@@ -4,10 +4,14 @@
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1">
   <MAINGROUP id="WThyKH" name="ninju">
     <GROUP id="{B6E950E9-89E4-81FB-E077-1B2830F2C1A9}" name="Source">
+      <FILE id="OfKDXj" name="SineWave.cpp" compile="1" resource="0" file="Source/SineWave.cpp"/>
+      <FILE id="DuncGP" name="SineWave.h" compile="0" resource="0" file="Source/SineWave.h"/>
       <FILE id="s3UdQR" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="HeMg0C" name="PluginProcessor.h" compile="0" resource="0"
             file="Source/PluginProcessor.h"/>
+      <FILE id="zvLY00" name="Square.cpp" compile="1" resource="0" file="Source/Square.cpp"/>
+      <FILE id="VHDqPE" name="Square.h" compile="0" resource="0" file="Source/Square.h"/>
       <FILE id="Kur44O" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
       <FILE id="C5v5g2" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>

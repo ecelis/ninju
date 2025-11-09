@@ -2,6 +2,11 @@
   "python-envs.defaultEnvManager": "ms-python.python:conda",
   "python-envs.defaultPackageManager": "ms-python.python:conda",
   "python-envs.pythonProjects": [],
-  "makefile.makefilePath": "Builds/LinuxMakefile",
-  "makefile.configurations": []
+  "makefile.configurations": [
+    {
+      "name": "Default",
+      "makeArgs": ["-C", "Builds/LinuxMakefile", "all", "-j", "6"]
+    }
+  ],
+  "makefile.makefilePath": "Builds/LinuxMakefile"
 }

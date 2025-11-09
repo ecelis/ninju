@@ -8,7 +8,7 @@
       "name": "Make and debug in plugin host",
       "type": "cppdbg",
       "request": "launch",
-      "program": "/home/ecelis/.local/JUCE/extras/AudioPluginHost/Builds/LinuxMakefile/build/AudioPluginHost",
+      "program": "${workspaceFolder}/Builds/LinuxMakefile/build/ninju",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
@@ -22,7 +22,22 @@
           "ignoreFailures": true
         }
       ],
-      "preLaunchTask": "make",
+      "preLaunchTask": "Make (Debug)",
+      "miDebuggerPath": "/usr/bin/gdb"
+    },
+    {
+      "name": "Launch Binary",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/Builds/LinuxMakefile/build/ninju",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [],
+      "preLaunchTask": "Clean and Build",
       "miDebuggerPath": "/usr/bin/gdb"
     }
   ]
