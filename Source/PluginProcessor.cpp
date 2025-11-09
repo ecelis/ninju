@@ -20,7 +20,8 @@ NinjuAudioProcessor::NinjuAudioProcessor ()
 #endif
               .withOutput ("Output", juce::AudioChannelSet::stereo (), true)
 #endif
-      )
+              ),
+      state (*this, nullptr, "parameters", createParameters ())
 #endif
 {
 }
@@ -165,12 +166,21 @@ NinjuAudioProcessor::processBlock (juce::AudioBuffer<float> &buffer,
   for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
     buffer.clear (i, 0, buffer.getNumSamples ());
 
+  float freq = state.getRawParameterValue ("freqHz")->load ();
+  // float isPlaying = state.getRawParameterValue ("play")->load (); // TODO
+  // make slider for amplitude, this should be a toggle
+  bool isPlaying = state.getRawParameterValue ("play")->load ();
+  // sinewave.setFrequency (freq);
   //   sinewave.process (buffer);
-  // for (int channel = 0; channel < buffer.getNumChannels (); ++channel)
-  //   {
-  //     auto *output = buffer.getWritePointer (channel);
-  //     sineWaves[channel].process (output, buffer.getNumSamples ());
-  //   }
+  for (int channel = 0; channel < buffer.getNumChannels (); ++channel)
+    {
+      auto *output = buffer.getWritePointer (channel);
+      sineWaves[channel].setFrequency (freq);
+      // sineWaves[channel].setAmplitude (isPlaying);
+      sineWaves[channel].setAmplitude (isPlaying ? 0.4f : 0.0f);
+
+      sineWaves[channel].process (output, buffer.getNumSamples ());
+    }
   // This is the place where you'd normally do the guts of your plugin's
   // audio processing...
   // Make sure to reset the state if your inner loop is processing
@@ -221,4 +231,18 @@ juce::AudioProcessor *JUCE_CALLTYPE
 createPluginFilter ()
 {
   return new NinjuAudioProcessor ();
+}
+
+juce::AudioProcessorValueTreeState::ParameterLayout
+NinjuAudioProcessor::createParameters ()
+{
+  // juce::AudioParameterFloat frequency{ juce::ParameterID{ "freqHz" },
+  //                                      "Frequency", 20.0f, 20000.0f, 220.0f
+  //                                      };
+
+  return { std::make_unique<juce::AudioParameterFloat> (
+               juce::ParameterID{ "freqHz", 1 }, "Frequency", 20.0f, 20000.0f,
+               220.0f),
+           std::make_unique<juce::AudioParameterBool> (
+               juce::ParameterID{ "play", 1 }, "Play", true) };
 }

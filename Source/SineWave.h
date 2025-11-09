@@ -17,7 +17,7 @@ private:
 
 public:
   //   void prepare (double sampleRate);
-  void prepare (double sampleRate, int numChannels);
+  void prepare (double rate, int numChannels);
   void process (juce::AudioBuffer<float> &buffer);
   float
   getAmplitude () const

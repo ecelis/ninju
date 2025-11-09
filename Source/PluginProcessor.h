@@ -7,7 +7,7 @@
 */
 
 #pragma once
-
+#include "SineWave.h"
 #include "SineWaveChannel.h"
 #include <JuceHeader.h>
 
@@ -54,9 +54,18 @@ public:
   void getStateInformation (juce::MemoryBlock &destData) override;
   void setStateInformation (const void *data, int sizeInBytes) override;
 
+  juce::AudioProcessorValueTreeState &
+  getState ()
+  {
+    return state;
+  }
+
 private:
-  // SineWave sinewave;
+  SineWave sinewave;
   std::vector<SineWaveChannel> sineWaves;
+  juce::AudioProcessorValueTreeState state;
+  juce::AudioProcessorValueTreeState::ParameterLayout createParameters ();
+
   //==============================================================================
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (NinjuAudioProcessor)
 };

@@ -33,7 +33,10 @@ private:
   juce::Label frequencyLabel{ "FrequencyLabel", "Frequency" };
   // This reference is provided as a quick way for your editor to
   // access the processor object that created it.
-  NinjuAudioProcessor &audioProcessor;
+  NinjuAudioProcessor &processorRef;
+
+  juce::AudioProcessorValueTreeState::SliderAttachment freqSliderAttachment;
+  juce::AudioProcessorValueTreeState::ButtonAttachment playButtonAttachment;
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (NinjuAudioProcessorEditor)
 };

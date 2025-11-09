@@ -12,7 +12,10 @@
 
 //==============================================================================
 NinjuAudioProcessorEditor::NinjuAudioProcessorEditor (NinjuAudioProcessor &p)
-    : AudioProcessorEditor (&p), audioProcessor (p)
+    : AudioProcessorEditor (&p), processorRef (p),
+      freqSliderAttachment (processorRef.getState (), "freqHz",
+                            frequencySlider),
+      playButtonAttachment (processorRef.getState (), "play", playButton)
 {
   // addAndMakeVisible (&square);
   // Make sure that before the constructor has finished, you've set the
@@ -24,8 +27,12 @@ NinjuAudioProcessorEditor::NinjuAudioProcessorEditor (NinjuAudioProcessor &p)
 
   frequencySlider.setSliderStyle (juce::Slider::SliderStyle::LinearVertical);
   frequencySlider.setTextBoxStyle (juce::Slider::TextBoxBelow, true, 100, 50);
-  frequencySlider.setRange (0.0f, 1.0f, 0.01f);
+  // frequencySlider.setRange (0.0f, 1.0f, 0.01f);
+  // frequencySlider.setValue (0.5f);
   addAndMakeVisible (frequencySlider);
+
+  frequencyLabel.setJustificationType (juce::Justification::centred);
+  addAndMakeVisible (frequencyLabel);
 
   playButton.setButtonText ("Playing");
   playButton.setToggleState (true,
@@ -41,9 +48,6 @@ NinjuAudioProcessorEditor::NinjuAudioProcessorEditor (NinjuAudioProcessor &p)
       playButton.setButtonText (isPlaying ? "Playing" : "Stopped");
     };
   addAndMakeVisible (playButton);
-
-  frequencyLabel.setJustificationType (juce::Justification::centred);
-  addAndMakeVisible (frequencyLabel);
 
   setSize (400, 400);
 }

@@ -14,15 +14,15 @@
 class SineWaveChannel
 {
 private:
-  float amplitude = 0.2f;   // A
+  float amplitude = 0.0f;   // A
   float frequency = 440.0f; // f
-  float currentSampleRate = 0.0f;
+  float sampleRate = 0.0f;
   float timeIncrement = 0.0f;
   float currentTime = 0.0f; // t
 
 public:
   //   void prepare (double sampleRate);
-  void prepare (double sampleRate);
+  void prepare (double rate);
   void process (float *output, int numSamples);
   float
   getAmplitude () const
