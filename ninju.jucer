@@ -20,6 +20,8 @@
             file="Source/PluginEditor.cpp"/>
       <FILE id="C5v5g2" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
+    <FILE id="iVC5Td" name="patito_ninja98.png" compile="0" resource="1"
+          file="Source/patito_ninja98.png"/>
   </MAINGROUP>
   <MODULES>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>

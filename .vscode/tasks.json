@@ -26,16 +26,13 @@
     {
       "label": "Make (Debug)",
       "type": "shell",
-      "command": "make -j 6 -C ${workspaceFolder}/Builds/LinuxMakefile CONFIG=Debug",
+      "command": "make -j 10 -C ${workspaceFolder}/Builds/LinuxMakefile CONFIG=Debug",
       "problemMatcher": [],
       "group": "build"
     },
     {
       "label": "Clean and Build",
-      "dependsOn": [
-        "Clean",
-        "Build"
-      ],
+      "dependsOn": ["Clean", "Build"],
       "dependsOrder": "sequence",
       "group": "build"
     }

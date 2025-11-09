@@ -8,9 +8,9 @@
 class SineWave
 {
 private:
-  float amplitude = 0.2f;   // A
+  float amplitude = 0.0f;   // A
   float frequency = 440.0f; // f
-  float currentSampleRate = 0.0f;
+  float sampleRate = 0.0f;  // float currentSampleRate = 0.0f;
   float timeIncrement = 0.0f;
   //   float currentTime = 0.0f; // t
   std::vector<float> currentTime;

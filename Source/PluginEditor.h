@@ -8,28 +8,30 @@
 
 #pragma once
 
-#include <JuceHeader.h>
 #include "PluginProcessor.h"
 #include "Square.h"
+#include <JuceHeader.h>
 
 //==============================================================================
 /**
-*/
-class NinjuAudioProcessorEditor  : public juce::AudioProcessorEditor
+ */
+class NinjuAudioProcessorEditor : public juce::AudioProcessorEditor
 {
 public:
-    NinjuAudioProcessorEditor (NinjuAudioProcessor&);
-    ~NinjuAudioProcessorEditor() override;
+  NinjuAudioProcessorEditor (NinjuAudioProcessor &);
+  ~NinjuAudioProcessorEditor () override;
 
-    //==============================================================================
-    void paint (juce::Graphics&) override;
-    void resized() override;
+  //==============================================================================
+  void paint (juce::Graphics &) override;
+  void resized () override;
 
 private:
-    Square square;
-    // This reference is provided as a quick way for your editor to
-    // access the processor object that created it.
-    NinjuAudioProcessor& audioProcessor;
+  juce::Image tapLogo;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (NinjuAudioProcessorEditor)
+  juce::Slider frequencySlider;
+  // This reference is provided as a quick way for your editor to
+  // access the processor object that created it.
+  NinjuAudioProcessor &audioProcessor;
+
+  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (NinjuAudioProcessorEditor)
 };
