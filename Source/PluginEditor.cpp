@@ -42,6 +42,9 @@ NinjuAudioProcessorEditor::NinjuAudioProcessorEditor (NinjuAudioProcessor &p)
     };
   addAndMakeVisible (playButton);
 
+  frequencyLabel.setJustificationType (juce::Justification::centred);
+  addAndMakeVisible (frequencyLabel);
+
   setSize (400, 400);
 }
 
@@ -79,6 +82,8 @@ NinjuAudioProcessorEditor::resized ()
 {
   // This is generally where you'll want to lay out the positions of any
   // subcomponents in your editor..
+  frequencyLabel.setBounds (getWidth () / 2 - 50, getHeight () / 2 - 120, 100,
+                            20);
   frequencySlider.setBounds (getWidth () / 2 - 50, getHeight () / 2 - 100, 100,
                              200);
   playButton.setBounds (getWidth () / 2 - 50, getHeight () / 2 + 120, 100, 20);
